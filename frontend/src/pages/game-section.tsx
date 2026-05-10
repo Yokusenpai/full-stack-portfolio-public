@@ -82,7 +82,7 @@ export function GamesSection() {
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-balance">
             Games{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-primary to-accent">
               & Experiments
             </span>
           </h2>
@@ -104,9 +104,8 @@ export function GamesSection() {
             This section is currently in development.
           </h3>
           <p className="text-muted-foreground max-w-md mx-auto">
-            I&apos;m working on some exciting games that will be
-            showcased here soon. Check back later for playable demos and game
-            experiments!
+            I&apos;m working on some exciting games that will be showcased here
+            soon. Check back later for playable demos and game experiments!
           </p>
         </motion.div>
 

@@ -75,7 +75,7 @@ function AboutSection() {
 
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 text-balance">
           Hi, I&apos;m{' '}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
+          <span className="text-transparent bg-clip-text bg-linear-to-r from-primary to-accent">
             YOURNAME
           </span>
         </h1>
@@ -152,7 +152,7 @@ function AboutSection() {
                 initial={{ width: 0 }}
                 animate={{ width: '60%' }}
                 transition={{ delay: 1, duration: 1, ease: 'easeOut' }}
-                className="h-full bg-gradient-to-r from-primary to-accent rounded-full"
+                className="h-full bg-linear-to-r from-primary to-accent rounded-full"
               />
             </div>
           </div>

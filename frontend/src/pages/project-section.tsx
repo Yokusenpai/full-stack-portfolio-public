@@ -197,7 +197,7 @@ export function ProjectsSection() {
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-balance">
             Featured{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-primary to-accent">
               Projects
             </span>
           </h2>
