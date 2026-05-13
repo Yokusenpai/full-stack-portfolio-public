@@ -6,19 +6,19 @@ import { Construction, Gamepad2 } from 'lucide-react';
 const mockGames = [
   {
     id: 1,
-    title: 'Oneric topaz',
+    title: '...',
     image:
       'https://images.unsplash.com/photo-1614732414444-096e5f1122d5?w=600&h=400&fit=crop',
   },
   {
     id: 2,
-    title: 'Assembly Required',
+    title: '....',
     image:
       'https://images.unsplash.com/photo-1493711662062-fa541f7f3d24?w=600&h=400&fit=crop',
   },
   {
     id: 3,
-    title: 'Fantasy Quest',
+    title: '...',
     image:
       'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=600&h=400&fit=crop',
   },
@@ -38,7 +38,7 @@ function MockGameCard({ game }: { game: (typeof mockGames)[0] }) {
           alt={game.title}
           className="w-full h-full object-cover blur-sm brightness-50"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-t from-card to-transparent" />
 
         {/* Coming Soon Overlay */}
         <div className="absolute inset-0 flex items-center justify-center">

@@ -1,5 +1,6 @@
 import {
   ArrowDown,
+  ArrowRight,
   Book,
   Code2,
   File,
@@ -55,7 +56,7 @@ function AboutSection() {
   return (
     <section
       id="about"
-      className="min-h-screen flex items-center justify-center pt-16 pb-20 px-4">
+      className="min-h-screen flex items-center justify-center pt-16 pb-20 px-4 mt-16">
       {/* Background Glow Effect */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
@@ -84,11 +85,9 @@ function AboutSection() {
           Programmer, Game Developer, Digital Artist
         </p>
         <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
-          Hi! I'm YOURNAME, but you can call me YOURNAME <br></br>
           I'm a Full-stack web developer, game developer, and also a digital
-          artist. I have a strong passion for programming and Passionate about
-          building beautiful, functional, and accessible web applications as
-          well as games.
+          artist. I have a strong passion for programming and passionate about
+          building beautiful, functional, and accessible web applications.
         </p>
 
         {/* Skills */}
@@ -115,6 +114,21 @@ function AboutSection() {
           </div>
         </motion.div>
 
+        <div className="md:pr-12 py-8 ">
+          <div className="relative">
+            <div className="absolute -top-3 left-0 w-12 h-1 bg-linear-to-r from-accent to-transparent rounded-full" />
+            <p className="text-muted-foreground leading-relaxed text-left pt-4 ">
+              While I love creating websites and web applications, I also have a
+              passion for art. I'm currently improving my artistic skills, and
+              I'm open to working on commissions if someone is interested.
+              Please keep in mind that my art is still in development, but I'm
+              eager to collaborate and bring your ideas to life. If you have any
+              projects or ideas in mind, feel free to reach out to me. Thank you
+              for visiting my portfolio!
+            </p>
+          </div>
+        </div>
+
         {/* Interests */}
         <motion.div variants={itemVariants} className="mb-8">
           <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-4">
@@ -135,6 +149,20 @@ function AboutSection() {
             ))}
           </div>
         </motion.div>
+
+        <div className="md:pl-12 md:mt-12 py-8 mb-8">
+          <div className="relative">
+            <p className="text-muted-foreground leading-relaxed text-right pb-4">
+              I'm also a fan of game development and you'll find me working on
+              small projects whenever I have the time. While solo development
+              can be challenging at times, it allows me to express my creativity
+              and push my skills further. I'm excited to showcase some of my
+              game development projects in the games section of this website
+              once they're complete.
+            </p>
+            <div className="absolute -bottom-3 right-0 w-12 h-1 bg-linear-to-l from-primary to-transparent rounded-full" />
+          </div>
+        </div>
 
         {/* School Progress */}
         <motion.div variants={itemVariants} className="mb-10">
@@ -163,12 +191,14 @@ function AboutSection() {
           variants={itemVariants}
           className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <Button
-              size="lg"
-              className="bg-accent text-accent-foreground hover:bg-accent/90 rounded-xl px-8">
-              <NavLink to="/projects">View Projects</NavLink>
-              <ArrowDown className="ml-2 h-4 w-4" />
-            </Button>
+            <NavLink to="/projects">
+              <Button
+                size="lg"
+                className="bg-accent text-accent-foreground hover:bg-accent/90 rounded-xl px-8">
+                View Projects
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </NavLink>
           </motion.div>
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <a href="/src/assets/new_resume.pdf" download="YOURNAME's Resume">

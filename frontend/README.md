@@ -1,73 +1,41 @@
-# React + TypeScript + Vite
+# My Portfolio Webpage Source Code
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the repository for my professional portfolio website, designed to showcase my projects, skills, and background to prospective employers.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+### Frontend
 
-## React Compiler
+- **React** – Component-based user interface architecture
+- **Tailwind CSS** – Utility-first responsive design styling
+- **Framer Motion** – Smooth layout transitions and interactive UI animations
+- **Zustand** – Lightweight, centralized global state management
+- **Lucide React** – Clean, modern UI iconography
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Backend & Database
 
-## Expanding the ESLint configuration
+- **Node.js** – JavaScript runtime environment
+- **Express.js** – RESTful API routing and server framework
+- **MongoDB & Cloudinary** – NoSQL database schemas for project and artwork storage
+- **Axios** – Promise-based HTTP client for seamless API communications
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Core Features
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **Dynamic Media Gallery** – Custom masonry grid featuring decoupled API skeleton loaders and image asset streaming
+- **Responsive Layout** – Fully fluid, mobile-first design adapted for mobile, tablet, and desktop viewports
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Content Management System (Admin Dashboard)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+The platform features a secure, private administration panel that allows me to manage my portfolio assets directly without modifying the codebase.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- **Full CRUD Workflow** – Ability to instantly upload, update metadata, or remove artworks from the live database.
+- **Form Validation & State Handling** – Robust client-side validation to ensure clean payload deliveries to the API.
+- **Optimistic UI Updates** – Seamless feedback loops that immediately reflect changes on the dashboard while syncing with the backend database.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Contributing
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request.
+
+## Contact
+
+For any questions or inquiries, please contact [rahzorlaw@gmail.com](mailto:YOURGMAIL@gmail.com)

@@ -1,5 +1,3 @@
-'use client';
-
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowBigDown, X, ZoomIn } from 'lucide-react';
@@ -7,24 +5,7 @@ import type { Artwork } from '../types';
 import { useArtworkStore } from '../store/useArtworkStore';
 import { Skeleton } from '../components/ui/skeleton';
 
-function ArtSkeleton() {
-  return (
-    <div className="bg-card rounded-2xl overflow-hidden border border-border">
-      <Skeleton className="w-full h-48" />
-      <div className="p-5 space-y-3">
-        <Skeleton className="h-6 w-3/4" />
-        <Skeleton className="h-4 w-full" />
-        <Skeleton className="h-4 w-2/3" />
-        <div className="flex gap-2 pt-2">
-          <Skeleton className="h-6 w-16 rounded-full" />
-          <Skeleton className="h-6 w-20 rounded-full" />
-          <Skeleton className="h-6 w-14 rounded-full" />
-        </div>
-      </div>
-    </div>
-  );
-}
-function ArtworkCard({
+export function ArtworkCard({
   artwork,
   onClick,
 }: {
@@ -36,6 +17,7 @@ function ArtworkCard({
     landscape: 'col-span-2',
     square: '',
   }[artwork.aspectRatio];
+  const [isImgLoading, setImgLoading] = useState(true);
 
   return (
     <motion.div
@@ -46,10 +28,16 @@ function ArtworkCard({
       onClick={onClick}
       className={`group relative overflow-hidden rounded-2xl cursor-pointer ${heightClass}`}>
       <div className="relative w-full h-full min-h-50">
+        {isImgLoading && (
+          <Skeleton className="absolute inset-0 w-full h-full rounded-2xl" />
+        )}
         <img
           src={artwork.imageUrl}
-          alt={`Artwork ${artwork.id}`}
-          className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-110"
+          onLoad={() => setImgLoading(false)}
+          alt={`Artwork ${artwork._id}`}
+          className={`w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-110 ${
+            isImgLoading ? 'opacity-0' : 'opacity-100'
+          }`}
         />
 
         {/* Artistic Overlay Effect */}
@@ -71,8 +59,8 @@ function ArtworkCard({
         </motion.div>
 
         {/* Artistic corner accents */}
-        <div className="absolute top-2 left-2 w-8 h-8 border-t-2 border-l-2 border-primary opacity-0 group-hover:opacity-70 transition-opacity duration-500" />
-        <div className="absolute bottom-2 right-2 w-8 h-8 border-b-2 border-r-2 border-accent opacity-0 group-hover:opacity-70 transition-opacity duration-500" />
+        <div className="absolute top-2 left-2 w-8 h-8 border-t-2 border-l-2 border-primary opacity-0 group-hover:opacity-80 transition-opacity duration-500" />
+        <div className="absolute bottom-2 right-2 w-8 h-8 border-b-2 border-r-2 border-accent opacity-0 group-hover:opacity-80 transition-opacity duration-500" />
       </div>
     </motion.div>
   );
@@ -85,22 +73,39 @@ function Lightbox({
   artwork: Artwork;
   onClose: () => void;
 }) {
+  const handleDownload = async () => {
+    try {
+      const response = await fetch(artwork.imageUrl);
+      const blob = await response.blob();
+      const url = URL.createObjectURL(blob);
+
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `Artwork ${artwork._id}`;
+      document.body.appendChild(a);
+      a.click();
+
+      // Cleanup
+      URL.revokeObjectURL(url);
+      a.remove();
+    } catch (error) {
+      console.error('Download failed:', error);
+    }
+  };
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      onClick={onClose}
       className="fixed inset-0 z-50 bg-background/95 backdrop-blur-lg flex items-center justify-center p-4">
-      <a href={artwork.imageUrl} download={`Artwork ${artwork.id}`}>
-        <motion.button
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          className="absolute top-6 left-6 p-3 bg-surface rounded-full border border-border hover:bg-card transition-colors"
-          aria-label="Download current art">
-          <ArrowBigDown className="h-6 w-6" />
-        </motion.button>
-      </a>
+      <motion.button
+        onClick={handleDownload}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        className="absolute top-6 left-6 p-3 bg-surface rounded-full border border-border hover:bg-card transition-colors"
+        aria-label="Download current art">
+        <ArrowBigDown className="h-6 w-6" />
+      </motion.button>
       <motion.button
         onClick={onClose}
         whileHover={{ scale: 1.1 }}
@@ -116,7 +121,7 @@ function Lightbox({
         exit={{ scale: 0.8, opacity: 0 }}
         transition={{ type: 'spring', damping: 25 }}
         src={artwork.imageUrl}
-        alt={`Artwork ${artwork.id}`}
+        alt={`Artwork ${artwork._id}`}
         onClick={(e) => e.stopPropagation()}
         className="max-w-full max-h-[85vh] object-contain rounded-2xl shadow-2xl"
       />
@@ -126,7 +131,7 @@ function Lightbox({
 
 export function ArtSection() {
   const [selectedArtwork, setSelectedArtwork] = useState<Artwork | null>(null);
-  const { artworks, fetchArtworks, isLoading, error } = useArtworkStore();
+  const { artworks, fetchArtworks, error, isLoading } = useArtworkStore();
 
   useEffect(() => {
     fetchArtworks();
@@ -143,7 +148,7 @@ export function ArtSection() {
   }
 
   return (
-    <section id="art" className="py-20 px-4 bg-surface/30">
+    <section id="art" className="py-20 px-4 bg-surface/30 mt-16">
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
         <motion.div
@@ -169,10 +174,12 @@ export function ArtSection() {
         {/* Masonry Gallery */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-[200px]">
           {isLoading
-            ? Array.from({ length: 6 }).map((_, i) => <ArtSkeleton key={i} />)
+            ? Array.from({ length: artworks.length }).map((_, i) => (
+                <Skeleton key={i} />
+              ))
             : artworks.map((artwork: Artwork) => (
                 <ArtworkCard
-                  key={artwork.id}
+                  key={artwork._id}
                   artwork={artwork}
                   onClick={() => setSelectedArtwork(artwork)}
                 />

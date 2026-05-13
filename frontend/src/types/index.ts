@@ -1,5 +1,5 @@
 export interface Project{
-    id: number;
+    _id: string;
     title: string;
     desc: string;
     imageUrl: string;
@@ -9,7 +9,7 @@ export interface Project{
 }
 
 export interface Artwork{
-    id: number;
+    _id: string;
     imageUrl: string;
     snsLink?: string;
     aspectRatio: 'portrait' | 'landscape' | 'square';

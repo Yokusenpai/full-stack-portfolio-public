@@ -9,7 +9,7 @@ interface ProjectStore {
   error: string | null;
 }
 
-export const usePortfolioStore = create<ProjectStore>((set) => ({
+export const useProjectStore = create<ProjectStore>((set) => ({
   projects: [],
   isLoading: false,
   error: null,

@@ -29,11 +29,11 @@ export const createProject = async (req, res, next) => {
     const { title, desc, tags, liveUrl = '', githubUrl } = req.body;
 
     const imageUrl = await uploadToCloudinary(req.files.image);
-
+    const tagsArray = tags.split(',').map((tag) => tag.trim());
     const project = new Project({
       title,
       desc,
-      tags,
+      tags: tagsArray,
       imageUrl,
       liveUrl,
       githubUrl,
