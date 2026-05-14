@@ -1,5 +1,4 @@
 import {
-  ArrowDown,
   ArrowRight,
   Book,
   Code2,
@@ -96,12 +95,11 @@ function AboutSection() {
             Tech Stack
           </h3>
           <div className="flex flex-wrap justify-center gap-2">
-            {skills.map((skill, index) => (
+            {skills.map((skill) => (
               <motion.span
                 key={skill}
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.5 + index * 0.05 }}
                 whileHover={{
                   scale: 1.1,
                   backgroundColor: 'var(--accent)',
@@ -135,16 +133,18 @@ function AboutSection() {
             Interests
           </h3>
           <div className="flex flex-wrap justify-center gap-4">
-            {interests.map((interest, index) => (
+            {interests.map((interest) => (
               <motion.div
                 key={interest.label}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.7 + index * 0.1 }}
                 whileHover={{ scale: 1.05 }}
-                className="flex items-center gap-2 px-4 py-2 bg-surface rounded-lg border border-border">
-                <interest.icon className="h-5 w-5 text-accent" />
-                <span className="text-sm font-medium">{interest.label}</span>
+                transition={{ delay: 0.15 }}
+                className="group flex items-center gap-2 px-4 py-2 bg-surface rounded-lg border border-border">
+                <interest.icon className="h-5 w-5 text-accent group-hover:text-primary" />
+                <span className="text-sm font-medium group-hover:text-accent">
+                  {interest.label}
+                </span>
               </motion.div>
             ))}
           </div>
@@ -194,9 +194,9 @@ function AboutSection() {
             <NavLink to="/projects">
               <Button
                 size="lg"
-                className="bg-accent text-accent-foreground hover:bg-accent/90 rounded-xl px-8">
+                className="group bg-accent text-accent-foreground hover:bg-primary/90 rounded-xl px-8">
                 View Projects
-                <ArrowRight className="ml-2 h-4 w-4" />
+                <ArrowRight className="ml-2 h-4 w-4 group-hover:text-accent" />
               </Button>
             </NavLink>
           </motion.div>

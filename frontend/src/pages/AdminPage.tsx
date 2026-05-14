@@ -151,6 +151,7 @@ function AdminPage() {
 
   const handleArtworkSubmit = async (e: React.SubmitEvent) => {
     e.preventDefault();
+
     if (!artworkImage || artworkForm.aspectRatio === '') {
       setMessage({ type: 'error', text: 'Please fill in all fields' });
       return;
@@ -181,6 +182,9 @@ function AdminPage() {
   };
 
   const handleProjectDelete = async (_id: string) => {
+    const confirmed = window.confirm('Delete this project permanently?');
+
+    if (!confirmed) return;
     setIsDeleting(true);
     setMessage(null);
     try {
@@ -198,6 +202,9 @@ function AdminPage() {
   };
 
   const handleArtworkDelete = async (_id: string) => {
+    const confirmed = window.confirm('Delete this artwork permanently?');
+
+    if (!confirmed) return;
     setIsDeleting(true);
     setMessage(null);
     try {
@@ -394,7 +401,7 @@ function AdminPage() {
                       <ProjectCard project={project} index={index} />
                       <Button
                         disabled={isDeleting}
-                        className="w-full gap-2 bg-destructive hover:cursor-pointer hover:bg-accent/70"
+                        className="w-full gap-2 bg-destructive hover:bg-accent/70"
                         onClick={() => handleProjectDelete(project._id)}>
                         Delete
                       </Button>
