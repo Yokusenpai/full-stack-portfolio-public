@@ -6,6 +6,8 @@ import GamesSection from './pages/game-section';
 import AdminPage from './pages/AdminPage';
 import PublicLayout from './pages/layouts/PublicLayout';
 import AdminLayout from './pages/layouts/AdminLayout';
+import LoginPage from './pages/loginPage';
+import ProtectedRoute from './ProtectedRoute';
 
 function App() {
   return (
@@ -18,7 +20,10 @@ function App() {
         <Route path="/games" element={<GamesSection />} />
       </Route>
       <Route element={<AdminLayout />}>
-        <Route path="/admin" element={<AdminPage />} />
+        <Route element={<ProtectedRoute />}>
+          <Route path="/admin" element={<AdminPage />} />
+        </Route>
+        <Route path="/login" element={<LoginPage />} />
       </Route>
     </Routes>
   );

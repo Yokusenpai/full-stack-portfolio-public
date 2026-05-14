@@ -3,11 +3,14 @@ import express from 'express';
 import path from 'path';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import bcrypt from 'bcryptjs';
 import fileUpload from 'express-fileupload';
 import adminRoutes from './routes/admin.route.js';
 import projectRoute from './routes/project.route.js';
 import artworkRoute from './routes/artwork.route.js';
-
+import authRoutes from './routes/auth.route.js';
+import cookieParser from 'cookie-parser';
+import { protectRoute } from './middleware/auth.middleware.js';
 dotenv.config();
 
 const app = express();
@@ -20,7 +23,7 @@ app.use(
     credentials: true,
   }),
 );
-
+app.use(cookieParser());
 app.use(express.json());
 
 app.use(
@@ -34,7 +37,8 @@ app.use(
   }),
 );
 
-app.use('/api/admin', adminRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/admin', protectRoute, adminRoutes);
 app.use('/api/projects', projectRoute);
 app.use('/api/artworks', artworkRoute);
 

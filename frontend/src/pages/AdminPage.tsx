@@ -501,9 +501,8 @@ function AdminPage() {
                   </Button>
                 </form>
                 {artworks.map((artwork: Artwork) => (
-                  <div className="mt-16">
+                  <div className="mt-16" key={artwork._id}>
                     <ArtworkCard
-                      key={artwork._id}
                       artwork={artwork}
                       onClick={() => handleArtworkDelete(artwork._id)}
                     />

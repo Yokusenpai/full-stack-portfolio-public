@@ -2,7 +2,9 @@ import { Project } from '../model/project.model.js';
 import { Artwork } from '../model/artwork.model.js';
 import cloudinary from '../lib/cloudinary.js';
 
-export const checkAdmin = async (req, res, next) => {};
+export const checkAdmin = async (req, res, next) => {
+  
+};
 
 const uploadToCloudinary = async (file) => {
   try {

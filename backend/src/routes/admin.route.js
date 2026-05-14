@@ -6,15 +6,14 @@ import {
   deleteArtwork,
   deleteProject,
 } from '../controller/admin.controller.js';
+import { protectRoute } from '../middleware/auth.middleware.js';
 
 const router = Router();
 
-router.get('/check', checkAdmin);
+router.post('/artworks', protectRoute, createArtwork);
+router.post('/projects', protectRoute, createProject);
 
-router.post('/artworks', createArtwork);
-router.post('/projects', createProject);
-
-router.delete('/artworks/:id', deleteArtwork);
-router.delete('/projects/:id', deleteProject);
+router.delete('/artworks/:id', protectRoute, deleteArtwork);
+router.delete('/projects/:id', protectRoute, deleteProject);
 
 export default router;
