@@ -2,7 +2,7 @@ import { connectDB } from './lib/db.mjs';
 import express from 'express';
 import path from 'path';
 import cron from 'node-cron';
-impo;
+import fs from 'fs';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import bcrypt from 'bcryptjs';
