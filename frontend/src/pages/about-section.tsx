@@ -73,6 +73,26 @@ function AboutSection() {
     fetchResume();
   }, []);
 
+  const handleDownloadResume = async () => {
+    if (!resumeUrl) return;
+    try {
+      const resp = await fetch(resumeUrl);
+      if (!resp.ok) throw new Error('Failed to fetch resume');
+      const blob = await resp.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'YOURNAME_Resume.pdf';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error('Download failed', error);
+      window.open(resumeUrl, '_blank', 'noopener');
+    }
+  };
+
   return (
     <section
       id="about"
@@ -223,15 +243,14 @@ function AboutSection() {
           </motion.div>
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             {resumeUrl ? (
-              <a href={resumeUrl} target="_blank" rel="noreferrer">
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="rounded-xl px-8 border-border hover:bg-surface">
-                  Download Resume
-                  <File className="ml-2 h-4 w-4" />
-                </Button>
-              </a>
+              <Button
+                size="lg"
+                variant="outline"
+                className="rounded-xl px-8 border-border hover:bg-surface"
+                onClick={handleDownloadResume}>
+                Download Resume
+                <File className="ml-2 h-4 w-4" />
+              </Button>
             ) : (
               <Button
                 size="lg"
