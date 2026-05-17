@@ -82,7 +82,13 @@ export function ProjectAdminSection({
 
       await axiosInstance.post('/admin/projects', formData);
       setMessage({ type: 'success', text: 'Project created successfully!' });
-      setProjectForm({ title: '', desc: '', tags: '', liveUrl: '', githubUrl: '' });
+      setProjectForm({
+        title: '',
+        desc: '',
+        tags: '',
+        liveUrl: '',
+        githubUrl: '',
+      });
       clearImage();
       onProjectsUpdated();
     } catch (error: any) {
@@ -225,7 +231,10 @@ export function ProjectAdminSection({
             </div>
           </div>
 
-          <Button type="submit" className="w-full gap-2" disabled={isSubmitting}>
+          <Button
+            type="submit"
+            className="w-full gap-2"
+            disabled={isSubmitting}>
             <Plus className="size-4" />
             {isSubmitting ? 'Creating...' : 'Create Project'}
           </Button>

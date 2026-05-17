@@ -183,7 +183,10 @@ export function ArtworkAdminSection({ setMessage }: ArtworkAdminSectionProps) {
             />
           </div>
 
-          <Button type="submit" className="w-full gap-2" disabled={isSubmitting}>
+          <Button
+            type="submit"
+            className="w-full gap-2"
+            disabled={isSubmitting}>
             <Plus className="size-4" />
             {isSubmitting ? 'Creating...' : 'Create Artwork'}
           </Button>

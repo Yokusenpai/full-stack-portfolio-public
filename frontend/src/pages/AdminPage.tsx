@@ -1,7 +1,12 @@
 import * as React from 'react';
 import { FolderCode, Palette, ArrowLeft, File } from 'lucide-react';
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from '../components/ui/tabs';
 import { NavLink } from 'react-router';
 import { useProjectStore } from '../store/useProjectStore';
 import { ProjectAdminSection } from './admin/ProjectAdminSection';

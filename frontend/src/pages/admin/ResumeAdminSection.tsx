@@ -19,7 +19,9 @@ interface ResumeAdminSectionProps {
 
 export function ResumeAdminSection({ setMessage }: ResumeAdminSectionProps) {
   const [resumeFile, setResumeFile] = React.useState<File | null>(null);
-  const [resumeFileName, setResumeFileName] = React.useState<string | null>(null);
+  const [resumeFileName, setResumeFileName] = React.useState<string | null>(
+    null,
+  );
   const [resumeUrl, setResumeUrl] = React.useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = React.useState(false);
 
@@ -128,8 +130,7 @@ export function ResumeAdminSection({ setMessage }: ResumeAdminSectionProps) {
                 href={resumeUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="text-accent hover:underline"
-              >
+                className="text-accent hover:underline">
                 View current resume
               </a>
             </div>
@@ -138,8 +139,7 @@ export function ResumeAdminSection({ setMessage }: ResumeAdminSectionProps) {
           <Button
             type="submit"
             className="w-full gap-2"
-            disabled={isSubmitting}
-          >
+            disabled={isSubmitting}>
             <Plus className="size-4" />
             {isSubmitting ? 'Uploading...' : 'Upload Resume'}
           </Button>
