@@ -5,15 +5,19 @@ import { ThemeProvider } from '../../components/theme-provider';
 
 const PublicLayout = () => {
   return (
-      <ThemeProvider
-        attribute="class"
-        defaultTheme="dark"
-        enableSystem
-        disableTransitionOnChange>
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="dark"
+      enableSystem
+      disableTransitionOnChange>
+      <div className="min-h-screen flex flex-col">
         <Navbar />
-        <Outlet />
+        <main className='flex-1'>
+          <Outlet />
+        </main>
         <Footer />
-      </ThemeProvider>
+      </div>
+    </ThemeProvider>
   );
 };
 

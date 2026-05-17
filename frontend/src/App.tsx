@@ -8,6 +8,7 @@ import PublicLayout from './pages/layouts/PublicLayout';
 import AdminLayout from './pages/layouts/AdminLayout';
 import LoginPage from './pages/loginPage';
 import ProtectedRoute from './ProtectedRoute';
+import ErrorPage from './pages/ErrorPage';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/projects" element={<ProjectsSection />} />
         <Route path="/artworks" element={<ArtSection />} />
         <Route path="/games" element={<GamesSection />} />
+        <Route path="/*" element={<ErrorPage />} />
       </Route>
       <Route element={<AdminLayout />}>
         <Route element={<ProtectedRoute />}>
