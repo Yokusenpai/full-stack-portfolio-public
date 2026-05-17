@@ -1,3 +1,6 @@
+import * as React from 'react';
+import { useEffect } from 'react';
+import { axiosInstance } from '../lib/axios';
 import {
   ArrowRight,
   Book,
@@ -52,6 +55,24 @@ function AboutSection() {
     // { icon: Videotape, label: 'Content Creation' },
     // { icon: Box, label: '3D Modeling' },
   ];
+
+  const [resumeUrl, setResumeUrl] = React.useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchResume = async () => {
+      try {
+        const response = await axiosInstance.get('/resume');
+        if (response.data?.fileUrl) {
+          setResumeUrl(response.data.fileUrl);
+        }
+      } catch (error) {
+        console.log('Could not fetch resume URL', error);
+      }
+    };
+
+    fetchResume();
+  }, []);
+
   return (
     <section
       id="about"
@@ -201,15 +222,26 @@ function AboutSection() {
             </NavLink>
           </motion.div>
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <a href="/src/assets/new_resume.pdf" download="YOURNAME's Resume">
+            {resumeUrl ? (
+              <a href={resumeUrl} target="_blank" rel="noreferrer">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="rounded-xl px-8 border-border hover:bg-surface">
+                  Download Resume
+                  <File className="ml-2 h-4 w-4" />
+                </Button>
+              </a>
+            ) : (
               <Button
                 size="lg"
                 variant="outline"
-                className="rounded-xl px-8 border-border hover:bg-surface">
-                Download Resume
+                className="rounded-xl px-8 border-border hover:bg-surface"
+                disabled>
+                Resume unavailable
                 <File className="ml-2 h-4 w-4" />
               </Button>
-            </a>
+            )}
           </motion.div>
         </motion.div>
       </motion.div>

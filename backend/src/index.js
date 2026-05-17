@@ -10,6 +10,7 @@ import fileUpload from 'express-fileupload';
 import adminRoutes from './routes/admin.route.js';
 import projectRoute from './routes/project.route.js';
 import artworkRoute from './routes/artwork.route.js';
+import resumeRoute from './routes/resume.route.js';
 import authRoutes from './routes/auth.route.js';
 import cookieParser from 'cookie-parser';
 import { protectRoute } from './middleware/auth.middleware.js';
@@ -55,6 +56,7 @@ cron.schedule('0 * * * *', () => {
 
 app.use('/api/auth', authRoutes);
 app.use('/api/admin', protectRoute, adminRoutes);
+app.use('/api/resume', resumeRoute);
 app.use('/api/projects', projectRoute);
 app.use('/api/artworks', artworkRoute);
 
