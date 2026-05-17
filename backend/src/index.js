@@ -62,8 +62,8 @@ app.use('/api/artworks', artworkRoute);
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../frontend/dist')));
-  // Use a safe catch-all that avoids path-to-regexp parsing issues
-  app.get('/.*/', (req, res) => {
+  // Use a RegExp (not string) to bypass path-to-regexp parsing
+  app.get(/.*/, (req, res) => {
     res.sendFile(path.resolve(__dirname, '../frontend/dist/index.html'));
   });
 }
