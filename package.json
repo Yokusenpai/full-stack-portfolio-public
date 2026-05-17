@@ -1,0 +1,22 @@
+{
+  "name": "fullstack_portfolio",
+  "version": "1.0.0",
+  "description": "This is the repository for my professional portfolio website, built to showcase my projects, skills, and creativity for prospective employers.",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm install --prefix backend && npm install --prefix frontend && npm run build --prefix backend && npm run build --prefix frontend",
+    "start": "npm start --prefix backend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com//fullstack_portfolio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com//fullstack_portfolio/issues"
+  },
+  "homepage": "https://github.com//fullstack_portfolio#readme"
+}

@@ -1,6 +1,8 @@
 import { connectDB } from './lib/db.mjs';
 import express from 'express';
 import path from 'path';
+import cron from 'node-cron';
+impo;
 import dotenv from 'dotenv';
 import cors from 'cors';
 import bcrypt from 'bcryptjs';
@@ -37,10 +39,31 @@ app.use(
   }),
 );
 
+// cron job
+const tempDir = path.join(process.cwd(), 'tmp');
+cron.schedule('0 * * * *', () => {
+  if (fs.existsSync(tempDir)) {
+    fs.readdir(tempDir, (err, files) => {
+      if (err) return console.log('error ', err);
+
+      for (const file of files) {
+        fs.unlink(path.join(tempDir, file), (err) => {});
+      }
+    });
+  }
+});
+
 app.use('/api/auth', authRoutes);
 app.use('/api/admin', protectRoute, adminRoutes);
 app.use('/api/projects', projectRoute);
 app.use('/api/artworks', artworkRoute);
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../frontend/dist')));
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../frontend/dist/index.html'));
+  });
+}
 
 app.listen(PORT, () => {
   connectDB();
