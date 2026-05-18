@@ -191,7 +191,7 @@ export function ArtworkAdminSection({ setMessage }: ArtworkAdminSectionProps) {
             {isSubmitting ? 'Creating...' : 'Create Artwork'}
           </Button>
         </form>
-
+        
         {artworks.map((artwork: Artwork) => (
           <div className="mt-16" key={artwork._id}>
             <ArtworkCard

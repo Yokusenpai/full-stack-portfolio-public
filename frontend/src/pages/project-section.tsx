@@ -120,6 +120,9 @@ export function ProjectsSection() {
     fetchProjects();
   }, [fetchProjects]);
 
+  console.log(projects);
+  console.log(Array.isArray(projects));
+
   if (error) {
     return (
       <section id="art" className="py-20 px-4 bg-surface/30">
@@ -158,10 +161,11 @@ export function ProjectsSection() {
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {isLoading
-            ? Array.from({ length: projects.length }).map((_, i) => (
+            ? Array.from({ length: projects?.length || 3 }).map((_, i) => (
                 <ProjectSkeleton key={i} />
               ))
-            : projects.map((project, index) => (
+            : Array.isArray(projects) &&
+              projects.map((project, index) => (
                 <ProjectCard
                   key={project._id}
                   project={project}
