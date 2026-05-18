@@ -174,10 +174,11 @@ export function ArtSection() {
         {/* Masonry Gallery */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-[200px]">
           {isLoading
-            ? Array.from({ length: artworks.length }).map((_, i) => (
+            ? Array.from({ length: artworks?.length || 6 }).map((_, i) => (
                 <Skeleton key={i} />
               ))
-            : artworks.map((artwork: Artwork) => (
+            : Array.isArray(artworks) &&
+              artworks.map((artwork: Artwork) => (
                 <ArtworkCard
                   key={artwork._id}
                   artwork={artwork}

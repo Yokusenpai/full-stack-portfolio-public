@@ -120,9 +120,6 @@ export function ProjectsSection() {
     fetchProjects();
   }, [fetchProjects]);
 
-  console.log(projects);
-  console.log(Array.isArray(projects));
-
   if (error) {
     return (
       <section id="art" className="py-20 px-4 bg-surface/30">
