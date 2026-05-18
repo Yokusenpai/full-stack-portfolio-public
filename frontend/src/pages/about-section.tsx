@@ -1,6 +1,6 @@
-import * as React from 'react';
+/* import * as React from 'react';
 import { useEffect } from 'react';
-import { axiosInstance } from '../lib/axios';
+import { axiosInstance } from '../lib/axios'; */
 import {
   ArrowRight,
   Book,
@@ -57,9 +57,9 @@ function AboutSection() {
     { icon: Box, label: '3D Modeling' },
   ];
 
-  const [resumeUrl, setResumeUrl] = React.useState<string | null>(null);
+ // const [resumeUrl, setResumeUrl] = React.useState<string | null>(null);
 
-  //TODO: FIX RESUME ERROR AND ADD CLOUDINARY DELETE FOR ALL DATA DELETE CONTROLLERS!
+/*   //TODO: FIX RESUME ERROR AND ADD CLOUDINARY DELETE FOR ALL DATA DELETE CONTROLLERS!
   useEffect(() => {
     const fetchResume = async () => {
       try {
@@ -94,7 +94,7 @@ function AboutSection() {
       console.error('Download failed:', error);
     }
   };
-
+ */
   return (
     <section
       id="about"
@@ -253,7 +253,7 @@ function AboutSection() {
                 Download Resume
                 <File className="ml-2 h-4 w-4" />
               </Button>
-            ) : ( */}
+            ) : ( */} 
             <Button
               size="lg"
               variant="outline"
