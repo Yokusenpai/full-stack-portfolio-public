@@ -15,7 +15,6 @@ dist
 dist-ssr
 *.local
 # Local resume asset should not be committed
-frontend/src/assets/new_resume.pdf
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
