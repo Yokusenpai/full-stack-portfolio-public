@@ -31,7 +31,7 @@ This is the repository for my professional portfolio website, built to showcase 
 - Protected admin routes with login authentication
 - File uploads and media handling via Cloudinary
 - Full stack app structure with separate frontend/backend
-
+- Restful Api & GRASP principles
 ## Repo structure
 
 - `frontend/` — Vite React app
