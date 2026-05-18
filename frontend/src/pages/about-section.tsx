@@ -244,7 +244,7 @@ function AboutSection() {
             </NavLink>
           </motion.div>
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            {resumeUrl ? (
+            {/* {resumeUrl ? (
               <Button
                 onClick={handleDownloadResume}
                 size="lg"
@@ -253,16 +253,15 @@ function AboutSection() {
                 Download Resume
                 <File className="ml-2 h-4 w-4" />
               </Button>
-            ) : (
-              <Button
-                size="lg"
-                variant="outline"
-                className="rounded-xl px-8 border-border hover:bg-surface"
-                disabled>
-                Resume unavailable
-                <File className="ml-2 h-4 w-4" />
-              </Button>
-            )}
+            ) : ( */}
+            <Button
+              size="lg"
+              variant="outline"
+              className="rounded-xl px-8 border-border hover:bg-surface"
+              disabled>
+              Resume unavailable
+              <File className="ml-2 h-4 w-4" />
+            </Button>
           </motion.div>
         </motion.div>
       </motion.div>
