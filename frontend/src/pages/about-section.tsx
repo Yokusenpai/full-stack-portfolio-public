@@ -1,9 +1,7 @@
-import * as React from 'react';
-import { useEffect } from 'react';
-import { axiosInstance } from '../lib/axios';
 import {
   ArrowRight,
   Book,
+  Box,
   Code2,
   File,
   Gamepad2,
@@ -53,11 +51,13 @@ function AboutSection() {
     { icon: Gamepad2, label: 'Game Dev' },
     { icon: Book, label: 'Reading novels/VNs' },
     // { icon: Videotape, label: 'Content Creation' },
-    // { icon: Box, label: '3D Modeling' },
+    { icon: Box, label: '3D Modeling' },
   ];
 
-  const [resumeUrl, setResumeUrl] = React.useState<string | null>(null);
+  // const [resumeUrl, setResumeUrl] = React.useState<string | null>(null);
 
+  //TODO: FIX RESUME ERROR AND ADD CLOUDINARY DELETE FOR ALL DATA DELETE CONTROLLERS!
+  /*
   useEffect(() => {
     const fetchResume = async () => {
       try {
@@ -69,29 +69,29 @@ function AboutSection() {
         console.log('Could not fetch resume URL', error);
       }
     };
-
     fetchResume();
   }, []);
 
-  const handleDownloadResume = async () => {
+   const handleDownloadResume = async () => {
     if (!resumeUrl) return;
     try {
-      const resp = await fetch(resumeUrl);
-      if (!resp.ok) throw new Error('Failed to fetch resume');
-      const blob = await resp.blob();
+      const response = await fetch(resumeUrl);
+      const blob = await response.blob();
       const url = URL.createObjectURL(blob);
+
       const a = document.createElement('a');
       a.href = url;
-      a.download = 'YOURNAME_Resume.pdf';
+      a.download = 'YOURNAMEs resume';
       document.body.appendChild(a);
       a.click();
-      a.remove();
+
+      // Cleanup
       URL.revokeObjectURL(url);
+      a.remove();
     } catch (error) {
-      console.error('Download failed', error);
-      window.open(resumeUrl, '_blank', 'noopener');
+      console.error('Download failed:', error);
     }
-  };
+  }; */
 
   return (
     <section
@@ -242,25 +242,15 @@ function AboutSection() {
             </NavLink>
           </motion.div>
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            {resumeUrl ? (
+            <a href="/new_resume.pdf" download="YOURNAME's Resume">
               <Button
                 size="lg"
                 variant="outline"
-                className="rounded-xl px-8 border-border hover:bg-surface"
-                onClick={handleDownloadResume}>
+                className="rounded-xl px-8 border-border hover:bg-surface">
                 Download Resume
                 <File className="ml-2 h-4 w-4" />
               </Button>
-            ) : (
-              <Button
-                size="lg"
-                variant="outline"
-                className="rounded-xl px-8 border-border hover:bg-surface"
-                disabled>
-                Resume unavailable
-                <File className="ml-2 h-4 w-4" />
-              </Button>
-            )}
+            </a>
           </motion.div>
         </motion.div>
       </motion.div>
