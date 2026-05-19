@@ -14,6 +14,10 @@ const artworkSchema = new mongoose.Schema(
       type: String,
       required: false,
     },
+    publicId: {
+      type: String,
+      required: false,
+    },
   },
   { timestamps: true },
 );

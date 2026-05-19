@@ -2,16 +2,14 @@ import { Project } from '../model/project.model.js';
 import { Artwork } from '../model/artwork.model.js';
 import cloudinary from '../lib/cloudinary.js';
 
-export const checkAdmin = async (req, res, next) => {
-  
-};
+export const checkAdmin = async (req, res, next) => {};
 
 const uploadToCloudinary = async (file) => {
   try {
     const result = await cloudinary.uploader.upload(file.tempFilePath, {
       resource_type: 'auto',
     });
-    return result.secure_url;
+    return result;
 
     //
   } catch (error) {
@@ -36,9 +34,10 @@ export const createProject = async (req, res, next) => {
       title,
       desc,
       tags: tagsArray,
-      imageUrl,
+      imageUrl: imageUrl.secure_url,
       liveUrl,
       githubUrl,
+      publicId: imageUrl.public_id,
     });
     await project.save();
     res.status(201).json(project);
@@ -58,9 +57,10 @@ export const createArtwork = async (req, res, next) => {
     const imageUrl = await uploadToCloudinary(req.files.image);
 
     const artwork = new Artwork({
-      imageUrl,
+      imageUrl: imageUrl.secure_url,
       snsLink,
       aspectRatio,
+      publicId: imageUrl.public_id,
     });
 
     await artwork.save();
@@ -76,7 +76,10 @@ export const deleteProject = async (req, res, next) => {
   try {
     const { id } = req.params;
 
-    await Project.findByIdAndDelete(id);
+    const project = await Project.findById(id);
+    await cloudinary.uploader.destroy(project.publicId);
+
+    await project.deleteOne();
     res.status(200).json({ message: 'Project deleted' });
     //
   } catch (error) {
@@ -89,8 +92,12 @@ export const deleteArtwork = async (req, res, next) => {
   try {
     const { id } = req.params;
 
-    await Artwork.findByIdAndDelete(id);
+    const artwork = await Artwork.findById(id);
+    await cloudinary.uploader.destroy(artwork.publicId);
+
+    await artwork.deleteOne();
     res.status(200).json({ message: 'Art deleted' });
+    //
   } catch (error) {
     console.log('error in deleting art: ', error);
     next(error);
