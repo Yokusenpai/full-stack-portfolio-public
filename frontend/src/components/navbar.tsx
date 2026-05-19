@@ -6,6 +6,7 @@ import { Moon, Sun, Menu, X, Lock } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { Button } from '../components/ui/button';
 import { useLocation, NavLink } from 'react-router';
+import logo from '../../portfolio.svg';
 
 const navLinks = [
   { name: 'About', href: '/about' },
@@ -34,7 +35,7 @@ export function Navbar() {
             className="text-xl font-bold text-foreground"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}>
-            <img className="w-10 h-10" src="/portfolio.svg" alt="logo" />
+            <img className="w-10 h-10" src={logo} alt="logo" />
           </motion.div>
 
           {/* Desktop Navigation */}

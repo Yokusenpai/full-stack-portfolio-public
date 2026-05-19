@@ -11,6 +11,7 @@ import {
   GraduationCap,
   Palette,
 } from 'lucide-react';
+
 import { Button } from '../components/ui/button';
 import { motion, type Variants } from 'framer-motion';
 import { NavLink } from 'react-router';
