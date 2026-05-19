@@ -34,9 +34,7 @@ export function Navbar() {
             className="text-xl font-bold text-foreground"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}>
-            <span className="text-accent">&lt;</span>
-            <NavLink to="/">YOURNAME</NavLink>
-            <span className="text-accent">&gt;</span>
+            <img className="w-10 h-10" src="/portfolio.svg" alt="logo" />
           </motion.div>
 
           {/* Desktop Navigation */}
