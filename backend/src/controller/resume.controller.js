@@ -4,7 +4,7 @@ import cloudinary from '../lib/cloudinary.js';
 const uploadToCloudinary = async (file) => {
   try {
     const result = await cloudinary.uploader.upload(file.tempFilePath, {
-      resource_type: 'auto',
+      resource_type: 'raw',
       folder: 'portfolio/resume',
     });
     return result;
@@ -39,7 +39,7 @@ export const upsertResume = async (req, res, next) => {
     }
 
     const result = await uploadToCloudinary(resumeFile);
-    const existingResume = await Resume.findOne().sort({ createdAt: -1 });
+    const existingResume = await Resume.findOne()
 
     if (existingResume) {
       if (existingResume.publicId) {
