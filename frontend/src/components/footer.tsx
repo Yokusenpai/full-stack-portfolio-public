@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Github, Mail } from 'lucide-react';
+import { Github, Mail, Linkedin } from 'lucide-react';
 import logo from '../../portfolio.svg';
 
 const socialLinks = [
@@ -12,6 +12,11 @@ const socialLinks = [
     name: 'Email',
     href: 'mailto:YOURGMAIL@gmail.com',
     icon: Mail,
+  },
+  {
+    name: 'LinkedIn',
+    href: 'https://www.linkedin.com/',
+    icon: Linkedin,
   },
   /* {
     name: 'Bluesky',
