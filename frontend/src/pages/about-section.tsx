@@ -46,6 +46,7 @@ function AboutSection() {
     'Python',
     'HTML/CSS',
     'JavaScript',
+    'Java',
     'Game developing',
   ];
   const interests = [
