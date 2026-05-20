@@ -46,8 +46,7 @@ function AboutSection() {
     'Python',
     'HTML/CSS',
     'JavaScript',
-    'Php',
-    'Data Science(Currently learning)',
+    'Game developing',
   ];
   const interests = [
     { icon: Code2, label: 'Programming' },
