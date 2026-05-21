@@ -1,10 +1,6 @@
-# My Portfolio Webpage
+# My Portfolio Webpage Public source code
 
-This is the repository for my professional portfolio website, built to showcase my projects, skills, and creativity for prospective employers.
-
-## Live demo
-
-- Deployed frontend: **update this link after deployment**
+This repository is a public copy of portfolio website, built to showcase my projects, skills, and creativity for prospective employers.
 
 ## Tech stack
 
