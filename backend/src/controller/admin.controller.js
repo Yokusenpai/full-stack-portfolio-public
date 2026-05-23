@@ -77,7 +77,7 @@ export const deleteProject = async (req, res, next) => {
     const { id } = req.params;
 
     const project = await Project.findById(id);
-    await cloudinary.uploader.destroy(project.publicId);
+    if (project.publicId) await cloudinary.uploader.destroy(project.publicId);
 
     await project.deleteOne();
     res.status(200).json({ message: 'Project deleted' });
@@ -93,7 +93,7 @@ export const deleteArtwork = async (req, res, next) => {
     const { id } = req.params;
 
     const artwork = await Artwork.findById(id);
-    await cloudinary.uploader.destroy(artwork.publicId);
+    if (artwork.publicId) await cloudinary.uploader.destroy(artwork.publicId);
 
     await artwork.deleteOne();
     res.status(200).json({ message: 'Art deleted' });

@@ -9,6 +9,7 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+replacements.txt
 tmp
 node_modules
 dist
